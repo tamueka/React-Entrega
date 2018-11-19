@@ -1,0 +1,32 @@
+.thumbnail {
+    text-align: center;
+}
+.card {
+    position: relative;
+    display: -ms-flexbox;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: .25rem;
+    text-align: center;
+}
+.card-title{
+    font-size: 18px;
+    font-weight: bold;
+    color: rgba(0, 0, 0, 0.58);
+}
+.div{
+    padding-left: 10px;
+    padding-top: 20px;
+}
+.card-text{
+    text-align: center !important;
+    font-size: 18px;
+}
+a{
+    font-size: 20px;
+    font-weight: bold;
+}
