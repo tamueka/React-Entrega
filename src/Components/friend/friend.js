@@ -1,11 +1,11 @@
 import React, { Component}  from 'react';
-import { Col,Card,  CardImg, CardText, CardBody, CardTitle, CardSubtitle, Button } from 'reactstrap';
+import { Col,Card,  CardImg, CardText, CardBody, CardTitle, CardSubtitle} from 'reactstrap';
 import {Link} from 'react-router-dom'
 import './friend.css'
 import store from 'store';
 
 
-class Home extends Component {
+class friend extends Component {
     constructor(props) {
         super(props);
         this.follow = this.follow.bind(this); 
@@ -24,11 +24,12 @@ class Home extends Component {
         var  res = []
         data.results.map((pic)  => {
             store.get('following').map((foll) => {
-            if(pic.email === foll.followed && store.get('User').email === foll.user )
-                res.push(pic)    
+            if(pic.email === foll.followed && store.get('User').email === foll.user && foll.state !== 'refuse' )
+                res.push(pic)
+                return res    
             })
+            return res
         })
-
         let pictures = res.map((pic) => {
             return(
                 { 'pic':pic.picture.large,
@@ -71,18 +72,19 @@ class Home extends Component {
                                 <CardImg width="100%" src={pic.pic}  alt="Card image cap" />
                             <CardBody>
                             <CardText>{pic.email}</CardText>
-                            {this.state.following_list.length > 0  && this.state.following_list.find(foll => foll.followed === pic.email & foll.user === store.get('User').email   )  ? 
+                            {this.state.following_list.length > 0  && this.state.following_list.find(foll => foll.followed === pic.email & foll.user === store.get('User').email & foll.state === 'accepted'  )  ? 
                                 <Link to={'/Profile/' + pic.email } >  Profile  </Link> :null        
                             } 
-                            {this.state.following_list.length > 0   && this.state.following_list.find(foll => foll.followed === pic.email & foll.user === store.get('User').email  )  ? 
-                                null : <Button size="lg" color="info" onClick={() => this.follow(pic.email)}>Follow</Button>               
+                            {this.state.following_list.length > 0  && this.state.following_list.find(foll => foll.followed === pic.email & foll.user === store.get('User').email & foll.state === 'sent'  )  ? 
+                                 <p className="status">  Sent Requests  </p> :null                
                             } 
                         </CardBody>
                     </Card>       
                 </Col>
-            )  
+            ) 
+            
         )
     }
 }
 
-export default Home;
+export default friend;

@@ -46,7 +46,7 @@ export default class Login extends Component {
       this.setState({ authenticated: true });
       store.set('User', data);
       store.set('loggedIn', true);
-      store.set('following',  store.get('following') || [{user:'louane.vidal@example.com', followed: 'don.white@example.com', date: '2015-07-25T23:14:54Z', state : 'accepted'}])
+      store.set('following',  store.get('following') || [{user:'louane.vidal@example.com', followed: 'don.white@example.com', date: '2015-07-25T23:14:54Z', state : 'accepted'},{user:'don.white@example.com', followed: 'louane.vidal@example.com', date: '2015-07-25T23:14:54Z', state : 'accepted'}])
       this.props.history.push('/');       
       })
      

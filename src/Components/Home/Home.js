@@ -24,7 +24,8 @@ class Home extends Component {
         var  res = []
         data.results.map((pic)  => {
             if( store.get('User').email !== pic.email )
-                res.push(pic)    
+            res.push(pic)
+            return res    
         })
         let pictures = res.map((pic) => {
             return(
@@ -72,7 +73,7 @@ class Home extends Component {
                                 <Link to={'/Profile/' + pic.email } >  Profile  </Link> :null        
                             } 
                             {this.state.following_list.length > 0  && this.state.following_list.find(foll =>  foll.followed === pic.email & foll.user === store.get('User').email & foll.state === 'sent' )  ? 
-                                <p>  Sent  </p> :null        
+                                <p className="status">  Sent Requests  </p> :null        
                             } 
                             {this.state.following_list.length > 0   && this.state.following_list.find(foll => foll.followed === pic.email & foll.user === store.get('User').email  )  ? 
                                 null : <Button size="lg" color="info" onClick={() => this.follow(pic.email)}>Follow</Button>               
